@@ -36,6 +36,8 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # output to the screen as a table
 streamlit.dataframe(fruityvice_normalized)
 
+# The fuit load list
+
 import snowflake.connector
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
@@ -45,3 +47,7 @@ my_data_rows = my_cur.fetchall()
 streamlit.header("The Fruit Load List contains: ")
 streamlit.dataframe(my_data_rows)
 
+# Adding another text box to add fruit to the list
+
+add_my_fruit = streamlit.text_input('What fruit would you like to add?', 'jackfruit')
+streamlit.write('Thanks for adding ', add_my_fruit)
